@@ -4,6 +4,7 @@ timestamps {
 
 node ('Docker') { 
 
+	deleteDir()
 	stage ('Docker_Push - Checkout') {
  	 checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'GitHub', url: 'https://github.com/praveenkumarn/spring-boot-websocket-chat-demo']]]) 
 	}
@@ -17,7 +18,7 @@ node ('Docker') {
  				bat "mvn -f pom.xml clean package " 
 			} 
  		}		// Shell build step
-sh """ 
+sh ''' 
 #!/bin/bash
 pwd
 id
@@ -45,7 +46,7 @@ sudo -S docker tag spring-boot-websocket-chat-demo praveenkumarnagarajan/spring-
 cat ~/pass.txt | sudo -S docker login --username praveenkumarnagarajan --password-stdin
 
 sudo -S docker push praveenkumarnagarajan/spring-boot-websocket-chat-demo:0.0.1-SNAPSHOT 
- """ 
+ ''' 
 	}
 }
 }
