@@ -2,7 +2,7 @@
 FROM openjdk:8-jdk-alpine
 
 # Add Maintainer Info
-MAINTAINER Rajeev Kumar Singh <callicoder@gmail.com>
+MAINTAINER Praveen Kumar N<praveenkumar.nagarajan@gmail.com>
 
 # Add a volume pointing to /tmp
 VOLUME /tmp
@@ -16,6 +16,6 @@ ARG JAR_FILE=target/websocket-demo-0.0.1-SNAPSHOT.jar
 # Add the application's jar to the container
 ADD ${JAR_FILE} websocket-demo.jar
 
-# Run the jar file 
+# Run the jar file
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/websocket-demo.jar"]
 
